@@ -14,15 +14,17 @@ namespace Proyecto.BusinessLogic
     {
         public static void DataAccess(this IServiceCollection services, string connectionString)
         {
+            services.AddScoped<PlantillaRepository>();
             services.AddScoped<HospitalRepositories>();
             services.AddScoped<UsuariosRepository>();
-            services.AddScoped<RolesRepository>();
+            services.AddScoped<RolesRepositories>();
             CentrosMedicosContext.BuildConnectionString(connectionString);
         }
 
         //Resuelve la inyeccion de dependencia de los servicios
         public static void BusinessLogic(this IServiceCollection services)
         {
+            services.AddScoped<CatalogService>();
             services.AddScoped<UsuariosService>();
         }
     }

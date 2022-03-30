@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto.DataAccess.Repositories
 {
-    public class RolesRepository : IRepository<tbRoles>
+    public class RolesRepositories : IRepository<tbRoles>
     {
         public int Editar(tbRoles item)
         {
@@ -32,6 +32,11 @@ namespace Proyecto.DataAccess.Repositories
             using var db = new CentrosMedicosContext();
             var response = db.tbRoles.Where(expression).FirstOrDefault();
             return response;
+        }
+
+        public IEnumerable<tbRoles> GetTsTurno(string turno)
+        {
+            throw new NotImplementedException();
         }
 
         public int Insert(tbRoles item)

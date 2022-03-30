@@ -19,13 +19,13 @@ namespace ProyectoCentroMedico.MVC.Controllers
     {
         private readonly UsuariosService _usuariosService;
         //private readonly CatalogService _catalogService;
-        private readonly RolesRepository _rolesRepository;
+        private readonly RolesRepositories _rolesRepository;
         private readonly IMapper _mapper;
         public readonly IHttpContextAccessor _IHttpContextAccessor;
         public UsuariosController(UsuariosService usuariosService,
             //CatalogService catalogService,
             IMapper mapper,
-            RolesRepository rolesRepository,
+            RolesRepositories rolesRepository,
             IHttpContextAccessor HttpContextAccessor)
         {
             _usuariosService = usuariosService;

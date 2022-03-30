@@ -30,6 +30,11 @@ namespace Proyecto.DataAccess.Repositories
             throw new NotImplementedException();
         }
 
+        public IEnumerable<tbHospiltales> GetTsTurno(string turno)
+        {
+            throw new NotImplementedException();
+        }
+
         public int Insert(tbHospiltales item)
         {
             throw new NotImplementedException();

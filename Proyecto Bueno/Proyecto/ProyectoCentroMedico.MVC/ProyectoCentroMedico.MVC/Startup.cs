@@ -25,9 +25,11 @@ namespace ProyectoCentroMedico.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
             services.DataAccess(Configuration.GetConnectionString("CentroMedicoConn"));
             services.BusinessLogic();
+            services.AddControllersWithViews();
+            services.AddMvc();
+            services.AddOptions();
 
             services.AddAutoMapper(x => x.AddProfile<MappingProfileExntensions>(), AppDomain.CurrentDomain.GetAssemblies());
             //La linea 30 es importantisima porque sino no funciona el MappingProfileExtensions
@@ -65,7 +67,7 @@ namespace ProyectoCentroMedico.MVC
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Usuarios}/{action=Login}/{id?}");
+                    pattern: "{controller=Plantilla}/{action=PrintBy}/{id?}");
             });
         }
     }

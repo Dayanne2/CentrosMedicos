@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 namespace Proyecto.DataAccess.Repositories
 {
     public interface IRepository<T> //T es la entidad
-    {
+    {    
         public IEnumerable<T> List();
+        public IEnumerable<T> GetTsTurno(string turno);
         public int Insert(T item);//Retorna el id que se genera
         public T Find(int id);
         public int Editar(T item);
