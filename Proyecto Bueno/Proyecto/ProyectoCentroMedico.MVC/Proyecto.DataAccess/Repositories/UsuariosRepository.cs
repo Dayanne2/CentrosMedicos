@@ -50,13 +50,35 @@ namespace Proyecto.DataAccess.Repositories
 
         public int Insert(tbUsuarios item)
         {
-            throw new NotImplementedException();
+            //using var db = new CentrosMedicosContext();
+            //db.tbUsuarios.Add(item);
+            //db.SaveChanges();
+            //return item.usu_ID;
+
+            var parametres = new DynamicParameters();
+            parametres.Add("@rol_ID", item.rol_ID, DbType.String, ParameterDirection.Input);
+            parametres.Add("@usu_Nombre", item.usu_Nombre, DbType.String, ParameterDirection.Input);
+            parametres.Add("@usu_Apellido", item.usu_Apellido, DbType.String, ParameterDirection.Input);
+            parametres.Add("@usu_Email", item.usu_Email, DbType.String, ParameterDirection.Input);
+            parametres.Add("@usu_Password", item.usu_Password, DbType.String, ParameterDirection.Input);
+            parametres.Add("@usu_PasswordSalt", item.usu_PasswordSalt, DbType.String, ParameterDirection.Input);
+            parametres.Add("@usu_NumeroTelefono", item.usu_NumeroTelefono, DbType.String, ParameterDirection.Input);
+            parametres.Add("@usu_NumeroCelular", item.usu_NumeroCelular, DbType.String, ParameterDirection.Input);
+            using var db = new SqlConnection(CentrosMedicosContext.ConnectionString);
+            return db.ExecuteScalar<int>(ScriptsBaseDatos.UDP_insertar_usuarios, parametres, commandType: CommandType.StoredProcedure);
+
         }
 
         public IEnumerable<tbUsuarios> List()
         {
-            using var db = new CentrosMedicosContext();
-            return db.tbUsuarios.ToList();
+            //using var db = new CentrosMedicosContext();
+            //return db.tbUsuarios.ToList();
+
+            const string query = "UDP_Select_tbUsuarios";
+            var parametres = new DynamicParameters();
+            using var db = new SqlConnection(CentrosMedicosContext.ConnectionString);
+            return db.Query<tbUsuarios>(query, parametres, commandType: CommandType.Text);
+
         }
 
         public IEnumerable<string> UserAccess(string userEmail)

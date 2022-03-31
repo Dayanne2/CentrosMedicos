@@ -29,11 +29,21 @@ namespace ProyectoCentroMedico.MVC.Models
         [Required(ErrorMessage = "El campo {0} es requerido")]
         public string usu_Password { get; set; }
         public string usu_PasswordSalt { get; set; }
+        [Display(Name = "Telefono")]
+        [Required(ErrorMessage = "El campo {0} es requerido")]
         public string usu_NumeroTelefono { get; set; }
+        [Display(Name = "Celular")]
+        [Required(ErrorMessage = "El campo {0} es requerido")]
         public string usu_NumeroCelular { get; set; }
-        public bool usu_Activo { get; set; }
-        public DateTime usu_FechaCreacion { get; set; }
-        public DateTime? usu_FechaModificacion { get; set; }
+
         public SelectList ListadoRoles { get; set; }
+        public SelectList ListRol { get; set; }
+
+        public void LlenarCbRol(IEnumerable<tbRoles> listado)
+        {
+            ListRol = new SelectList(listado, "rol_Id", "rol_Nombre");
+        }
+
+        public string RolNombre { get; set; }
     }
 }

@@ -31,6 +31,25 @@ namespace Proyecto.BusinessLogic.Services
             }
         }
 
+        public string InsertarUsuarios(tbUsuarios item)
+        {
+            try
+            {
+                int resultado = _usuarioRepository.Insert(item);
+                string mensaje = string.Empty;
+                if (resultado <= 0)
+
+                    mensaje = "se produjo un erro";
+                return mensaje;
+            }
+            catch (Exception ex)
+            {
+
+                return ex.Message;
+            }
+        }
+
+
         public tbUsuarios FindUsuario(int id, out string errorMessage)
         {
             var response = new tbUsuarios();
@@ -64,6 +83,27 @@ namespace Proyecto.BusinessLogic.Services
             }
             return response;
         }
+
+        public string InsertarUsuario(tbUsuarios item)
+        {
+            try
+            {
+                item.usu_PasswordSalt = Guid.NewGuid().ToString();
+                item.usu_Password = Security.GeneratePassword(item.usu_Password, item.usu_PasswordSalt);
+                int resultado = _usuarioRepository.Insert(item);
+                string mensaje = string.Empty;
+                if (resultado > 0)
+                    mensaje = "Se produjo un error";
+
+                return mensaje;
+            }
+            catch (Exception ex)
+            {
+
+                return ex.Message;
+            }
+        }
+
 
         public string VerificarLogin(string email, string contraseña)
         {

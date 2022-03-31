@@ -1,6 +1,9 @@
-﻿using Proyecto.Entities.Entities;
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
+using Proyecto.Entities.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -46,8 +49,13 @@ namespace Proyecto.DataAccess.Repositories
 
         public IEnumerable<tbRoles> List()
         {
-            using var db = new CentrosMedicosContext();
-            return db.tbRoles.ToList();
+            //using var db = new CentrosMedicosContext();
+            //return db.tbRoles.ToList();
+            const string query = "UDP_Select_tbRoles";
+            var parametres = new DynamicParameters();
+            using var db = new SqlConnection(CentrosMedicosContext.ConnectionString);
+            return db.Query<tbRoles>(query, parametres, commandType: CommandType.Text);
+
         }
     }
 }

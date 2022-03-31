@@ -10,5 +10,17 @@ namespace Proyecto.DataAccess.Repositories
     {
         public static string UDP_tbPlantilla_Select = "UDP_tbPlantilla_Select";
         public static string UDP_tbPlantilla_Turno = "UDP_tbPlantilla_Turno";
+
+        #region tbUsuarios
+        //Listado
+        public static string UDP_Select_tbUsuarios = "UDP_Select_tbUsuarios";
+        //Insert
+        public static string UDP_insertar_usuarios = "UDP_insertar_usuarios";
+        #endregion
+
+        #region tbRoles
+        //listado
+        public static string UDP_Select_tbRoles = "UDP_Select_tbRoles";
+        #endregion
     }
 }
