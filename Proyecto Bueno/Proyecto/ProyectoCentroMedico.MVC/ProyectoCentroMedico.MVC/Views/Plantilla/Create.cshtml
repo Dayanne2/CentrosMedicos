@@ -10,7 +10,7 @@
     <div class="form-group">
         <label asp-for="hospi_Id" class="control-label col-md-2"></label>
         <div class="col-md-10">
-            <select asp-for="hospi_Id" class="form-control" asp-items="Model.ListadoHos">
+            <select asp-for="hospi_Id" class="form-control" asp-items="Model.ListadoHos" onchange="UpdatePlantilla()">
                 <option>Seleccione hospital</option>
             </select>
             <span asp-validation-for="hospi_Id" class="text-danger"></span>
@@ -69,3 +69,25 @@
         </div>
     </div>
 </form>
+<script>
+    function UpdatePlantilla() {
+        var idHosp = $("#hospi_Id").val();
+        $.ajax({
+            url: "./ListaPlantilla/" + idHosp,
+            method: "Get",
+            success: function (data) {
+                console.log(data.listadoSala)
+                $("#sala_Id").empty()
+                $.each(data.listadoSala, function (i, listadoSala) {
+                    $("#sala_Id").append($('<option>', {
+                        value: listadoSala.value,
+                        text: listadoSala.text
+                    }));
+                });
+            },
+        });
+    };
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>

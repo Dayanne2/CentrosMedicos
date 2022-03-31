@@ -30,6 +30,15 @@ namespace ProyectoCentroMedico.MVC.Controllers
             _catalogService = catalogService;
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         }
+
+        [HttpGet("Plantilla/ListaPlantilla/{hospi_Id}")]
+        public IActionResult MuniDepaCreate(int hospi_Id)
+        {
+            var editorial = new PlantillaViewModel();
+            editorial.LlenarSala(_catalogService.ListadoSala(out string mensajeError).Where(x => x.hospi_Id == hospi_Id));
+            return Ok(editorial);
+        }
+
         //crear
         [HttpGet("/Plantilla/Crear")]
         //[SessionManager(Helpers.UsuarioC)]
