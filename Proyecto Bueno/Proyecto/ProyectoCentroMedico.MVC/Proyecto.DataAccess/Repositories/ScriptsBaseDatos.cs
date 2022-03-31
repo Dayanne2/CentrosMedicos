@@ -8,8 +8,6 @@ namespace Proyecto.DataAccess.Repositories
 {
     public static class ScriptsBaseDatos
     {
-        public static string UDP_tbPlantilla_Select = "UDP_tbPlantilla_Select";
-        public static string UDP_tbPlantilla_Turno = "UDP_tbPlantilla_Turno";
 
         #region tbUsuarios
         //Listado
@@ -23,7 +21,6 @@ namespace Proyecto.DataAccess.Repositories
         public static string UDP_Select_tbRoles = "UDP_Select_tbRoles";
         #endregion
 
-
         #region tbSala
         //listado
         public static string UDP_Select_tbSala = "UDP_Select_tbSala";
@@ -35,9 +32,21 @@ namespace Proyecto.DataAccess.Repositories
         #endregion
 
         #region tbHospiltales
-        //listado
         public static string UDP_Select_tbHospiltales = "UDP_Select_tbHospiltales";
         public static string UDP_insertar_hospitales = "UDP_insertar_hospitales";
+        #endregion
+       
+        #region tbPlantilla
+        public static string UDP_tbPlantilla_Select = "UDP_tbPlantilla_Select";
+        public static string UDP_tbPlantilla_Turno = "UDP_tbPlantilla_Turno";
+        public static string UDP_insertar_Plantilla = "UDP_insertar_Plantilla";
+
+        #endregion
+
+        #region tbEnfermo
+        public static string UDP_insertar_enfermo = "UDP_insertar_enfermo";
+        public static string UDP_Select_tbEnfermo = "UDP_Select_tbEnfermo";
+
         #endregion
     }
 }

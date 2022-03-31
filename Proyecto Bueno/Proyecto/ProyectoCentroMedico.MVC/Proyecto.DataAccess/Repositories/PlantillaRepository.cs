@@ -25,12 +25,16 @@ namespace Proyecto.DataAccess.Repositories
 
         public tbPlantilla Find(int id)
         {
-            throw new NotImplementedException();
+            using var db = new CentrosMedicosContext();
+            var response = db.tbPlantilla.Find(id);
+            return response;
         }
 
         public tbPlantilla Find(Expression<Func<tbPlantilla, bool>> expression = null)
         {
-            throw new NotImplementedException();
+            using var db = new CentrosMedicosContext();
+            var response = db.tbPlantilla.Where(expression).FirstOrDefault();
+            return response;
         }
 
         public IEnumerable<tbPlantilla> GetReport()
@@ -58,7 +62,17 @@ namespace Proyecto.DataAccess.Repositories
 
         public int Insert(tbPlantilla item)
         {
-            throw new NotImplementedException();
+            var parametres = new DynamicParameters();
+            parametres.Add("@hospi_Id", item.hospi_Id, DbType.String, ParameterDirection.Input);
+            parametres.Add("@sala_Id", item.sala_Id, DbType.String, ParameterDirection.Input);
+            parametres.Add("@planti_Apellido", item.planti_Apellido, DbType.String, ParameterDirection.Input);
+            parametres.Add("@planti_Funcion", item.planti_Funcion, DbType.String, ParameterDirection.Input);
+            parametres.Add("@planti_Turno", item.planti_Turno, DbType.String, ParameterDirection.Input);
+            parametres.Add("@planti_Salario", item.planti_Salario, DbType.String, ParameterDirection.Input);
+            using var db = new SqlConnection(CentrosMedicosContext.ConnectionString);
+            return db.ExecuteScalar<int>(ScriptsBaseDatos.UDP_insertar_Plantilla, parametres, commandType: CommandType.StoredProcedure);
+
+
         }
 
         public IEnumerable<tbPlantilla> List()

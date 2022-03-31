@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Proyecto.BusinessLogic.Services;
@@ -14,6 +15,7 @@ namespace ProyectoCentroMedico.MVC.Controllers
 {
     public class HospitalController : Controller
     {
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         private readonly CatalogService _catalogService;
         private readonly HospitalRepositories _hospitalesRepository;
@@ -22,9 +24,10 @@ namespace ProyectoCentroMedico.MVC.Controllers
         public HospitalController(CatalogService catalogService,
             IMapper mapper,
             HospitalRepositories hospitalRepository,
-            IHttpContextAccessor HttpContextAccessor)
+            IHttpContextAccessor HttpContextAccessor,
+              IWebHostEnvironment webHostEnvironment)
         {
-
+            this._webHostEnvironment = webHostEnvironment;
             _catalogService = catalogService;
             _mapper = mapper;
             _hospitalesRepository = hospitalRepository;
@@ -42,16 +45,17 @@ namespace ProyectoCentroMedico.MVC.Controllers
 
         }
 
-        [HttpGet("/Hospital/Create")]
+        //crear
+        [HttpGet("/Hospitales/Crear")]
         //[SessionManager(Helpers.UsuarioC)]
         public IActionResult Create()
         {
-            //var rol = new SalaViewModel();
-            //rol.LlenarHosp(_catalogService.ListadoHospital(out string errorMessage));
+            //var rol = new UsuariosViewModel();
+            //rol.LlenarCbRol(_catalogService.ListadoRoles(out string errorMessage));
             //return View(rol);
             return View();
         }
-        [HttpPost("/Hospital/Create")]
+        [HttpPost("/Hospitales/Crear")]
         public IActionResult Create(HospitalesViewModel item)
         {
             if (ModelState.IsValid)
@@ -68,18 +72,12 @@ namespace ProyectoCentroMedico.MVC.Controllers
                 if (!string.IsNullOrEmpty(mensaje))
                     ModelState.AddModelError("", mensaje);
                 else
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(Create));
 
             }
             return View(item);
 
         }
-
-
-
-
-
-
 
     }
 }

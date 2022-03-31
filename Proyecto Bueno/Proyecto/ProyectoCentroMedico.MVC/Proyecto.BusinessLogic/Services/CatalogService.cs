@@ -15,16 +15,19 @@ namespace Proyecto.BusinessLogic.Services
         private readonly RolesRepositories _rolesRepository;
         private readonly SalasRepository _salasRepository;
         private readonly HospitalRepositories _hospitalRepositories;
+        private readonly EnfermoRepository _enfermoRepository;
 
         public CatalogService(PlantillaRepository plantillaRepository,
              RolesRepositories rolesRepository,
               SalasRepository salasRepository,
-             HospitalRepositories hospitalRepositories)
+             HospitalRepositories hospitalRepositories,
+             EnfermoRepository enfermoRepository)
         {
             _plantillaRepository = plantillaRepository;
             _rolesRepository = rolesRepository;
             _salasRepository = salasRepository;
             _hospitalRepositories = hospitalRepositories;
+            _enfermoRepository = enfermoRepository;
 
         }
 
@@ -141,7 +144,6 @@ namespace Proyecto.BusinessLogic.Services
         }
 
         #endregion
-
 
         #region tbPais
         public IEnumerable<tbPlantilla> PlantillaFiltrar(string turno)
@@ -274,7 +276,7 @@ namespace Proyecto.BusinessLogic.Services
             {
                 int resultado = _hospitalRepositories.Insert(item);
                 string mensaje = string.Empty;
-                if (resultado <= 0)
+                if (resultado > 0)
                     mensaje = "Se produjo un error al agregar el registro";
 
                 return mensaje;
@@ -323,6 +325,154 @@ namespace Proyecto.BusinessLogic.Services
 
 
         #endregion
+
+        #region Enfermo
+        //listado 
+        public IEnumerable<tbEnfermo> ListadoEnfermo(out string errorMessage)
+        {
+            errorMessage = string.Empty;
+            try
+            {
+                return _enfermoRepository.List();
+            }
+            catch (Exception ex)
+            {
+                errorMessage = ex.Message;
+                return Enumerable.Empty<tbEnfermo>();
+            }
+        }
+        //insertar 
+        public string InsertarEnfermo(tbEnfermo item)
+        {
+
+            try
+            {
+                int resultado = _enfermoRepository.Insert(item);
+                string mensaje = string.Empty;
+                if (resultado > 0)
+                    mensaje = "Se produjo un error al agregar el registro";
+
+                return mensaje;
+            }
+            catch (Exception ex)
+            {
+
+                return ex.Message;
+            }
+        }
+        //busquedad por id
+        public tbEnfermo FindEnfermo(int id, out string errorMessage)
+        {
+            var response = new tbEnfermo();
+            errorMessage = string.Empty;
+            try
+            {
+                response = _enfermoRepository.Find(id);
+
+            }
+            catch (Exception ex)
+            {
+
+                errorMessage = ex.Message;
+            }
+            return response;
+
+        }
+        //busqueda generalizada
+        public tbEnfermo FindEnfermo(out string errorMessage, Expression<Func<tbEnfermo, bool>> expression = null)
+        {
+            var response = new tbEnfermo();
+            errorMessage = string.Empty;
+            try
+            {
+                response = _enfermoRepository.Find(expression);
+
+            }
+            catch (Exception ex)
+            {
+
+                errorMessage = ex.Message;
+            }
+            return response;
+        }
+
+
+        #endregion
+
+        #region Plantilla
+        //listado 
+        public IEnumerable<tbPlantilla> ListadoPlantilla(out string errorMessage)
+        {
+            errorMessage = string.Empty;
+            try
+            {
+                return _plantillaRepository.List();
+            }
+            catch (Exception ex)
+            {
+                errorMessage = ex.Message;
+                return Enumerable.Empty<tbPlantilla>();
+            }
+        }
+        //insertar 
+        public string InsertarPlantilla(tbPlantilla item)
+        {
+
+            try
+            {
+                int resultado = _plantillaRepository.Insert(item);
+                string mensaje = string.Empty;
+                if (resultado > 0)
+                    mensaje = "Se produjo un error al agregar el registro";
+
+                return mensaje;
+            }
+            catch (Exception ex)
+            {
+
+                return ex.Message;
+            }
+        }
+        //busquedad por id
+        public tbPlantilla FindPlantilla(int id, out string errorMessage)
+        {
+            var response = new tbPlantilla();
+            errorMessage = string.Empty;
+            try
+            {
+                response = _plantillaRepository.Find(id);
+
+            }
+            catch (Exception ex)
+            {
+
+                errorMessage = ex.Message;
+            }
+            return response;
+
+        }
+        //busqueda generalizada
+        public tbPlantilla FindPlantilla(out string errorMessage, Expression<Func<tbPlantilla, bool>> expression = null)
+        {
+            var response = new tbPlantilla();
+            errorMessage = string.Empty;
+            try
+            {
+                response = _plantillaRepository.Find(expression);
+
+            }
+            catch (Exception ex)
+            {
+
+                errorMessage = ex.Message;
+            }
+            return response;
+        }
+
+
+        #endregion
+
+
 
     }
 }
