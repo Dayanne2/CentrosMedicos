@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using AspNetCore.Reporting;
+using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -76,7 +77,26 @@ namespace ProyectoCentroMedico.MVC.Controllers
 
             }
             return View(item);
+        }
 
+        public IActionResult Print()
+        {
+            var path = $"{this._webHostEnvironment.WebRootPath}\\Reports\\ReporteHospital.rdlc";
+            var tabla = _catalogService.HospitalReporte();
+            LocalReport localReport = new LocalReport(path);
+            localReport.AddDataSource("DataSet1", tabla);
+            var result = localReport.Execute(RenderType.Pdf);
+            return File(result.MainStream, "application/pdf");
+        }
+
+        public IActionResult PrintUltId()
+        {
+            var path = $"{this._webHostEnvironment.WebRootPath}\\Reports\\ReporteHospital.rdlc";
+            var tabla = _catalogService.HospitalUltimoId();
+            LocalReport localReport = new LocalReport(path);
+            localReport.AddDataSource("DataSet1", tabla);
+            var result = localReport.Execute(RenderType.Pdf);
+            return File(result.MainStream, "application/pdf");
         }
 
     }

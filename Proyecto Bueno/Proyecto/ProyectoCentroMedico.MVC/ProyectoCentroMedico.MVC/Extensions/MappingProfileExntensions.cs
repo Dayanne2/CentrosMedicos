@@ -12,6 +12,7 @@ namespace ProyectoCentroMedico.MVC.Extensions
     {
         public MappingProfileExntensions()
         {
+            CreateMap<ReporteGeneral, ReporteGeneralViewModel>().ReverseMap();
             CreateMap<tbUsuarios, UsuariosViewModel>().ReverseMap();
             CreateMap<tbPlantilla, PlantillaViewModel>().ReverseMap();
             CreateMap<tbSala, SalaViewModel>().ReverseMap();

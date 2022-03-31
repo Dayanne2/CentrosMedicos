@@ -34,19 +34,23 @@ namespace Proyecto.DataAccess.Repositories
         #region tbHospiltales
         public static string UDP_Select_tbHospiltales = "UDP_Select_tbHospiltales";
         public static string UDP_insertar_hospitales = "UDP_insertar_hospitales";
+        public static string UDP_tbHospital_SelectId = "UDP_tbHospital_SelectId";
         #endregion
        
         #region tbPlantilla
-        public static string UDP_tbPlantilla_Select = "UDP_tbPlantilla_Select";
-        public static string UDP_tbPlantilla_Turno = "UDP_tbPlantilla_Turno";
         public static string UDP_insertar_Plantilla = "UDP_insertar_Plantilla";
-
+        public static string UDP_tbPlantilla_SelectId = "UDP_tbPlantilla_SelectId";
+        public static string UDP_Select_tbPlantilla = "UDP_Select_tbPlantilla";
         #endregion
 
         #region tbEnfermo
         public static string UDP_insertar_enfermo = "UDP_insertar_enfermo";
         public static string UDP_Select_tbEnfermo = "UDP_Select_tbEnfermo";
+        public static string UDP_tbEnfermo_SelectId = "UDP_tbEnfermo_SelectId";
+        #endregion
 
+        #region ReporteGeneral
+        public static string UDP_Registro_Paciente = "UDP_Registro_Paciente";
         #endregion
     }
 }

@@ -71,30 +71,20 @@ namespace ProyectoCentroMedico.MVC.Controllers
 
         }
 
-
-
         public IActionResult Print()
         {
-            var path = $"{this._webHostEnvironment.WebRootPath}\\Reports\\ReportPlantilla.rdlc";
-            var tabla = _plantillaRepository.List();
+            var path = $"{this._webHostEnvironment.WebRootPath}\\Reports\\ReportePlantilla.rdlc";
+            var tabla = _catalogService.PlantillaReporte();
             LocalReport localReport = new LocalReport(path);
             localReport.AddDataSource("DataSet1", tabla);
             var result = localReport.Execute(RenderType.Pdf);
             return File(result.MainStream, "application/pdf");
         }
 
-        [HttpGet]
-        public IActionResult PrintBy()
+        public IActionResult PrintUltId()
         {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult PrintBy(tbPlantilla item)
-        {
-            string turno = item.planti_Turno;
-            var path = $"{this._webHostEnvironment.WebRootPath}\\Reports\\ReportPlantilla.rdlc";
-            var tabla = _catalogService.PlantillaFiltrar(turno);
+            var path = $"{this._webHostEnvironment.WebRootPath}\\Reports\\ReportePlantilla.rdlc";
+            var tabla = _catalogService.PlantillaUltimoId();
             LocalReport localReport = new LocalReport(path);
             localReport.AddDataSource("DataSet1", tabla);
             var result = localReport.Execute(RenderType.Pdf);

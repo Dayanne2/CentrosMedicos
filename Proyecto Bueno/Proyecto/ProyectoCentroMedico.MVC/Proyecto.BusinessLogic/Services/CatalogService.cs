@@ -16,19 +16,21 @@ namespace Proyecto.BusinessLogic.Services
         private readonly SalasRepository _salasRepository;
         private readonly HospitalRepositories _hospitalRepositories;
         private readonly EnfermoRepository _enfermoRepository;
+        private readonly ReporteGeneralRepository _reporteGeneralRepository;
 
         public CatalogService(PlantillaRepository plantillaRepository,
              RolesRepositories rolesRepository,
               SalasRepository salasRepository,
              HospitalRepositories hospitalRepositories,
-             EnfermoRepository enfermoRepository)
+             EnfermoRepository enfermoRepository,
+             ReporteGeneralRepository reporteGeneralRepository)
         {
             _plantillaRepository = plantillaRepository;
             _rolesRepository = rolesRepository;
             _salasRepository = salasRepository;
             _hospitalRepositories = hospitalRepositories;
             _enfermoRepository = enfermoRepository;
-
+            _reporteGeneralRepository = reporteGeneralRepository;
         }
 
         #region Roles
@@ -143,20 +145,6 @@ namespace Proyecto.BusinessLogic.Services
             }
         }
 
-        #endregion
-
-        #region tbPais
-        public IEnumerable<tbPlantilla> PlantillaFiltrar(string turno)
-        {
-            try
-            {
-                return _plantillaRepository.GetReportString(turno);
-            }
-            catch (Exception ex)
-            {
-                return Enumerable.Empty<tbPlantilla>();
-            }
-        }
         #endregion
 
         #region Sala
@@ -323,7 +311,29 @@ namespace Proyecto.BusinessLogic.Services
             return response;
         }
 
+        public IEnumerable<tbHospiltales> HospitalReporte()
+        {
+            try
+            {
+                return _hospitalRepositories.GetReport();
+            }
+            catch (Exception)
+            {
+                return Enumerable.Empty<tbHospiltales>();
+            }
+        }
 
+        public IEnumerable<tbHospiltales> HospitalUltimoId()
+        {
+            try
+            {
+                return _hospitalRepositories.GetReportUlt();
+            }
+            catch (Exception)
+            {
+                return Enumerable.Empty<tbHospiltales>();
+            }
+        }
         #endregion
 
         #region Enfermo
@@ -396,7 +406,29 @@ namespace Proyecto.BusinessLogic.Services
             return response;
         }
 
+        public IEnumerable<tbEnfermo> EnfermoReporte()
+        {
+            try
+            {
+                return _enfermoRepository.GetReport();
+            }
+            catch (Exception)
+            {
+                return Enumerable.Empty<tbEnfermo>();
+            }
+        }
 
+        public IEnumerable<tbEnfermo> EnfermoUltimoId()
+        {
+            try
+            {
+                return _enfermoRepository.GetReportUlt();
+            }
+            catch (Exception)
+            {
+                return Enumerable.Empty<tbEnfermo>();
+            }
+        }
         #endregion
 
         #region Plantilla
@@ -469,10 +501,44 @@ namespace Proyecto.BusinessLogic.Services
             return response;
         }
 
+        public IEnumerable<tbPlantilla> PlantillaReporte()
+        {
+            try
+            {
+                return _plantillaRepository.GetReport();
+            }
+            catch (Exception)
+            {
+                return Enumerable.Empty<tbPlantilla>();
+            }
+        }
 
+        public IEnumerable<tbPlantilla> PlantillaUltimoId()
+        {
+            try
+            {
+                return _plantillaRepository.GetReportUlt();
+            }
+            catch (Exception)
+            {
+                return Enumerable.Empty<tbPlantilla>();
+            }
+        }
         #endregion
 
-
+        #region ReporteGeneral
+        public IEnumerable<ReporteGeneral> ReporteGeneralId(int id)
+        {
+            try
+            {
+                return _reporteGeneralRepository.GetReportInt(id);
+            }
+            catch (Exception)
+            {
+                return Enumerable.Empty<ReporteGeneral>();
+            }
+        }
+        #endregion
 
     }
 }

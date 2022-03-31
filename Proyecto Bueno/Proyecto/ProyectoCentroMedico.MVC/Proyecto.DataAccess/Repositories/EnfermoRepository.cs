@@ -39,7 +39,8 @@ namespace Proyecto.DataAccess.Repositories
 
         public IEnumerable<tbEnfermo> GetReport()
         {
-            throw new NotImplementedException();
+            using var db = new SqlConnection(CentrosMedicosContext.ConnectionString);
+            return db.Query<tbEnfermo>(ScriptsBaseDatos.UDP_Select_tbEnfermo, commandType: CommandType.StoredProcedure);
         }
 
         public IEnumerable<tbEnfermo> GetReportInt(int var)
@@ -54,7 +55,21 @@ namespace Proyecto.DataAccess.Repositories
 
         public IEnumerable<tbEnfermo> GetReportUlt()
         {
-            throw new NotImplementedException();
+            int id = 0;
+            String id_ultima = "SELECT distinct TOP 1 (enfer_Inscripcioon) FROM tbEnfermo ORDER BY enfer_Inscripcioon DESC";
+            SqlConnection Con = new SqlConnection("Server= Mauricio; Database= CentrosMedicosDB; User Id= MauJosue; Password= 1234;");
+            SqlCommand ejecutar = new SqlCommand(id_ultima, Con);
+            Con.Open();
+            SqlDataReader leer = ejecutar.ExecuteReader();
+            if (leer.Read() == true)
+            {
+                id = Convert.ToInt32(leer["enfer_Inscripcioon"].ToString());
+                Con.Close();
+            }
+            var parameters = new DynamicParameters();
+            parameters.Add("@id", id, DbType.Int32, ParameterDirection.Input);
+            using var db = new SqlConnection(CentrosMedicosContext.ConnectionString);
+            return db.Query<tbEnfermo>(ScriptsBaseDatos.UDP_tbEnfermo_SelectId, parameters, commandType: CommandType.StoredProcedure);
         }
 
         public int Insert(tbEnfermo item)

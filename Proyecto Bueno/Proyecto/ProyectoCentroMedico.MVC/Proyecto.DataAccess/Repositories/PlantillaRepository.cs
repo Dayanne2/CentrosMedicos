@@ -39,7 +39,8 @@ namespace Proyecto.DataAccess.Repositories
 
         public IEnumerable<tbPlantilla> GetReport()
         {
-            throw new NotImplementedException();
+            using var db = new SqlConnection(CentrosMedicosContext.ConnectionString);
+            return db.Query<tbPlantilla>(ScriptsBaseDatos.UDP_Select_tbPlantilla, commandType: CommandType.StoredProcedure);
         }
 
         public IEnumerable<tbPlantilla> GetReportInt(int var)
@@ -49,15 +50,26 @@ namespace Proyecto.DataAccess.Repositories
 
         public IEnumerable<tbPlantilla> GetReportString(string var)
         {
-            var parameters = new DynamicParameters();
-            parameters.Add("@turno", var, DbType.String, ParameterDirection.Input);
-            using var db = new SqlConnection(CentrosMedicosContext.ConnectionString);
-            return db.Query<tbPlantilla>(ScriptsBaseDatos.UDP_tbPlantilla_Turno, parameters, commandType: CommandType.StoredProcedure);
+            throw new NotImplementedException();
         }
 
         public IEnumerable<tbPlantilla> GetReportUlt()
         {
-            throw new NotImplementedException();
+            int id = 0;
+            String id_ultima = "SELECT distinct TOP 1 (planti_EmpleadoId) FROM tbPlantilla ORDER BY planti_EmpleadoId DESC";
+            SqlConnection Con = new SqlConnection("Server= Mauricio; Database= CentrosMedicosDB; User Id= MauJosue; Password= 1234;");
+            SqlCommand ejecutar = new SqlCommand(id_ultima, Con);
+            Con.Open();
+            SqlDataReader leer = ejecutar.ExecuteReader();
+            if (leer.Read() == true)
+            {
+                id = Convert.ToInt32(leer["planti_EmpleadoId"].ToString());
+                Con.Close();
+            }
+            var parameters = new DynamicParameters();
+            parameters.Add("@id", id, DbType.Int32, ParameterDirection.Input);
+            using var db = new SqlConnection(CentrosMedicosContext.ConnectionString);
+            return db.Query<tbPlantilla>(ScriptsBaseDatos.UDP_tbPlantilla_SelectId, parameters, commandType: CommandType.StoredProcedure);
         }
 
         public int Insert(tbPlantilla item)
@@ -77,8 +89,7 @@ namespace Proyecto.DataAccess.Repositories
 
         public IEnumerable<tbPlantilla> List()
         {
-            using var db = new SqlConnection(CentrosMedicosContext.ConnectionString);
-            return db.Query<tbPlantilla>(ScriptsBaseDatos.UDP_tbPlantilla_Select, commandType: CommandType.StoredProcedure);
+            throw new NotImplementedException();
         }
     }
 }
