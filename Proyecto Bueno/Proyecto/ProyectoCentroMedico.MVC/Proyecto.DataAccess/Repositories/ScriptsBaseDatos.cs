@@ -29,6 +29,8 @@ namespace Proyecto.DataAccess.Repositories
         public static string UDP_Select_tbSala = "UDP_Select_tbSala";
         //insertar
         public static string UDP_insertar_Sala = "UDP_insertar_Sala";
+        //reporte
+        public static string UDP_tbSala_SelectId  = "UDP_tbSala_SelectId";
 
         #endregion
 

@@ -148,7 +148,7 @@ namespace Proyecto.BusinessLogic.Services
         {
             try
             {
-                return _plantillaRepository.GetTsTurno(turno);
+                return _plantillaRepository.GetReportString(turno);
             }
             catch (Exception ex)
             {
@@ -223,6 +223,30 @@ namespace Proyecto.BusinessLogic.Services
                 errorMessage = ex.Message;
             }
             return response;
+        }
+
+        public IEnumerable<tbSala> SalaReporte()
+        {
+            try
+            {
+                return _salasRepository.GetReport();
+            }
+            catch (Exception)
+            {
+                return Enumerable.Empty<tbSala>();
+            }
+        }
+
+        public IEnumerable<tbSala> SalaUltimoId()
+        {     
+            try
+            {
+                return _salasRepository.GetReportUlt();
+            }
+            catch (Exception)
+            {
+                return Enumerable.Empty<tbSala>();
+            }
         }
 
         #endregion

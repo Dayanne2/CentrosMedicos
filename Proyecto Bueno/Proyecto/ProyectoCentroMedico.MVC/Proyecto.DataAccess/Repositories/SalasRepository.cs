@@ -37,9 +37,39 @@ namespace Proyecto.DataAccess.Repositories
             return response;
         }
 
-        public IEnumerable<tbSala> GetTsTurno(string turno)
+        public IEnumerable<tbSala> GetReport()
+        {
+            using var db = new SqlConnection(CentrosMedicosContext.ConnectionString);
+            return db.Query<tbSala>(ScriptsBaseDatos.UDP_Select_tbSala, commandType: CommandType.StoredProcedure);
+        }
+
+        public IEnumerable<tbSala> GetReportInt(int var)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<tbSala> GetReportString(string var)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<tbSala> GetReportUlt()
+        {
+            int id = 0;
+            String id_ultima = "SELECT distinct TOP 1 (sala_Id) FROM tbSala ORDER BY sala_Id DESC";
+            SqlConnection Con = new SqlConnection("Server= Mauricio; Database= CentrosMedicosDB; User Id= MauJosue; Password= 1234;");
+            SqlCommand ejecutar = new SqlCommand(id_ultima, Con);
+            Con.Open();
+            SqlDataReader leer = ejecutar.ExecuteReader();
+            if (leer.Read() == true)
+            {
+                id = Convert.ToInt32(leer["sala_Id"].ToString());
+                Con.Close();
+            }
+            var parameters = new DynamicParameters();
+            parameters.Add("@id", id, DbType.Int32, ParameterDirection.Input);
+            using var db = new SqlConnection(CentrosMedicosContext.ConnectionString);
+            return db.Query<tbSala>(ScriptsBaseDatos.UDP_tbSala_SelectId, parameters, commandType: CommandType.StoredProcedure);
         }
 
         public int Insert(tbSala item)

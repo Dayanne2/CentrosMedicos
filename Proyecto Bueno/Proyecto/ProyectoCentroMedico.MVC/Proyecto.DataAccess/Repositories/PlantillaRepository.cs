@@ -33,12 +33,27 @@ namespace Proyecto.DataAccess.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<tbPlantilla> GetTsTurno(string turno)
+        public IEnumerable<tbPlantilla> GetReport()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<tbPlantilla> GetReportInt(int var)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<tbPlantilla> GetReportString(string var)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@turno", turno, DbType.String, ParameterDirection.Input);
+            parameters.Add("@turno", var, DbType.String, ParameterDirection.Input);
             using var db = new SqlConnection(CentrosMedicosContext.ConnectionString);
             return db.Query<tbPlantilla>(ScriptsBaseDatos.UDP_tbPlantilla_Turno, parameters, commandType: CommandType.StoredProcedure);
+        }
+
+        public IEnumerable<tbPlantilla> GetReportUlt()
+        {
+            throw new NotImplementedException();
         }
 
         public int Insert(tbPlantilla item)

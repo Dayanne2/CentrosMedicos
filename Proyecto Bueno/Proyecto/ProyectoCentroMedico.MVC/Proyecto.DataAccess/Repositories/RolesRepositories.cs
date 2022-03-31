@@ -37,7 +37,22 @@ namespace Proyecto.DataAccess.Repositories
             return response;
         }
 
-        public IEnumerable<tbRoles> GetTsTurno(string turno)
+        public IEnumerable<tbRoles> GetReport()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<tbRoles> GetReportInt(int var)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<tbRoles> GetReportString(string var)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<tbRoles> GetReportUlt()
         {
             throw new NotImplementedException();
         }
