@@ -3,9 +3,11 @@ using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Proyecto.BusinessLogic;
 using Proyecto.BusinessLogic.Services;
 using Proyecto.DataAccess.Repositories;
 using Proyecto.Entities.Entities;
+using ProyectoCentroMedico.MVC.Atributes;
 using ProyectoCentroMedico.MVC.Models;
 using System;
 using System.Collections.Generic;
@@ -41,7 +43,7 @@ namespace ProyectoCentroMedico.MVC.Controllers
 
         //crear
         [HttpGet("/Plantilla/Crear")]
-        //[SessionManager(Helpers.UsuarioC)]
+        [SessionManager(Helpers.InsertarPersonal)]
         public IActionResult Create()
         {
             var rol = new PlantillaViewModel();

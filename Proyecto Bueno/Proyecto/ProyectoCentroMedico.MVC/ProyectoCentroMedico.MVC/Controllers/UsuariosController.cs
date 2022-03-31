@@ -37,7 +37,7 @@ namespace ProyectoCentroMedico.MVC.Controllers
 
         //listado
         [HttpGet("Usuarios/Listado")]
-        //[SessionManager(Helpers.ListadoUsuario)]
+        [SessionManager(Helpers.Prueba)]
         public IActionResult Index()
         {
             var listado = _usuariosService.Listado(out string erroMessage);
@@ -50,7 +50,7 @@ namespace ProyectoCentroMedico.MVC.Controllers
 
         //crear
         [HttpGet("/Usuarios/Crear")]
-        //[SessionManager(Helpers.UsuarioC)]
+        [SessionManager(Helpers.InsertarUsuarios)]
         public IActionResult Create()
         {
             var rol = new UsuariosViewModel();
@@ -109,7 +109,7 @@ namespace ProyectoCentroMedico.MVC.Controllers
                 ModelState.AddModelError("", resultado);
                 return View(item);
             }
-            _IHttpContextAccessor.HttpContext.Session.SetString("permisosUsuarios", permisos);
+            _IHttpContextAccessor.HttpContext.Session.SetString("permisosUsuario", permisos);
 
             return RedirectToAction("Index", "Home");
         }

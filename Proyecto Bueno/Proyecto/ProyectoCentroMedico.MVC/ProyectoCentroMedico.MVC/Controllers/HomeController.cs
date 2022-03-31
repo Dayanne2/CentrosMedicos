@@ -20,6 +20,7 @@ namespace ProyectoCentroMedico.MVC.Controllers
             _logger = logger;
         }
 
+        [SessionManager(Helpers.Home)]
         public IActionResult Index()
         {
             return View();

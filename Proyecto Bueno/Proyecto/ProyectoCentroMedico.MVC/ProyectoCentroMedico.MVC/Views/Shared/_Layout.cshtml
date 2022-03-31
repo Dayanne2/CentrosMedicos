@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using Proyecto.BusinessLogic
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor contextAccesor;
+@{
+    string permisosUsuario = contextAccesor.HttpContext.Session.GetString("permisosUsuario");
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -21,7 +28,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-               
+
             </ul>
 
             <!-- Right navbar links -->
@@ -30,95 +37,96 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="~/Home/Index" class="brand-link">
-                <img src="/pyramid-solid-24.png" alt="Logo">
-                <span class="brand-text font-weight-light">Hospital Hospital</span>
-            </a>
+            <if include-if="permisosUsuario.Contains(Helpers.Home)">
+                <a href="~/Home/Index" class="brand-link">
+                    <img src="/pyramid-solid-24.png" alt="Logo">
+                    <span class="brand-text font-weight-light">Hospital</span>
+                </a>
+            </if>
+                <!-- Sidebar -->
+                <div class="sidebar">
 
-            <!-- Sidebar -->
-            <div class="sidebar">
-
-                <!-- SidebarSearch Form -->
-                <br />
-                <div class="form-inline">
-                    <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-sidebar">
-                                <i class="fas fa-search fa-fw"></i>
-                            </button>
+                    <!-- SidebarSearch Form -->
+                    <br />
+                    <div class="form-inline">
+                        <div class="input-group" data-widget="sidebar-search">
+                            <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-sidebar">
+                                    <i class="fas fa-search fa-fw"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Sidebar Menu -->
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <!-- Add icons to the links using the .nav-icon class
+                    with font-awesome or any other icon font library -->
+
+
+
+                            <li class="nav-header">Reportes</li>
+
+                            <li class="nav-item menu-open">
+                                
+                            <li class="nav-item">
+                                <if include-if="permisosUsuario.Contains(Helpers.Prueba)">
+                                    <a href="/ReportePaciente/Crear" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Reporte General</p>
+                                    </a>
+                                </if>
+                            </li>                               
+                            <li class="nav-header">Formularios</li>
+                            <li class="nav-item">
+                                <if include-if="permisosUsuario.Contains(Helpers.InsertarPersonal)">
+                                    <a href="~/Plantilla/Crear" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Personal</p>
+                                    </a>
+                                </if>
+                            </li>
+
+                            <li class="nav-item">
+                                <if include-if="permisosUsuario.Contains(Helpers.InsertarHospital)">
+                                    <a href="~/Hospitales/Crear" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Hospitales</p>
+                                    </a>
+                                </if>
+                            </li>
+                            <li class="nav-item">
+                                <if include-if="permisosUsuario.Contains(Helpers.InsertarSalas)">
+                                    <a href="~/Sala/Crear" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Salas</p>
+                                    </a>
+                                </if>
+                            </li>
+                            <li class="nav-item">
+                                <if include-if="permisosUsuario.Contains(Helpers.InsertarEnfermo)">
+                                    <a href="~/Enfermos/Crear" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Enfermo</p>
+                                    </a>
+                                </if>
+                            </li>
+                            <li class="nav-item">
+                                <if include-if="permisosUsuario.Contains(Helpers.InsertarUsuarios)">
+                                    <a href="~/Usuarios/Listado" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Usuarios</p>
+                                    </a>
+                                </if>
+                            </li>
+
+                        </ul>
+                    </nav>
+                    <!-- /.sidebar-menu -->
                 </div>
-
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-    with font-awesome or any other icon font library -->
-
-
-
-                        <li class="nav-header">Reportes</li>
-
-                        <li class="nav-item menu-open">
-
-                        <if></if>
-
-                        
-                        
-
-                        <li class="nav-item">
-                            <a href="/ReportePaciente/Crear" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Reporte General</p>
-                            </a>
-                        </li>
-
-
-                        <li class="nav-header">Formularios</li>
-                        <li class="nav-item">
-                            <a href="~/Plantilla/Crear" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Personal</p>
-
-
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="~/Hospitales/Crear" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Hospitales</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="~/Sala/Crear" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Salas</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="~/Enfermos/Crear" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Enfermo</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="~/Usuarios/Listado" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Usuarios</p>
-                            </a>
-                        </li>
-
-                    </ul>
-                </nav>
-                <!-- /.sidebar-menu -->
-            </div>
-            <!-- /.sidebar -->
+                <!-- /.sidebar -->
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
@@ -129,7 +137,6 @@
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                
                             </ol>
                         </div>
                     </div>
