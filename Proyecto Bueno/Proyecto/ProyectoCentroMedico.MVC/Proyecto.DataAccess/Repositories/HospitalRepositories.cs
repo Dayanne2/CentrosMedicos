@@ -25,12 +25,16 @@ namespace Proyecto.DataAccess.Repositories
 
         public tbHospiltales Find(int id)
         {
-            throw new NotImplementedException();
+            using var db = new CentrosMedicosContext();
+            var response = db.tbHospiltales.Find(id);
+            return response;
         }
 
         public tbHospiltales Find(Expression<Func<tbHospiltales, bool>> expression = null)
         {
-            throw new NotImplementedException();
+            using var db = new CentrosMedicosContext();
+            var response = db.tbHospiltales.Where(expression).FirstOrDefault();
+            return response;
         }
 
         public IEnumerable<tbHospiltales> GetReport()
@@ -55,7 +59,11 @@ namespace Proyecto.DataAccess.Repositories
 
         public int Insert(tbHospiltales item)
         {
-            throw new NotImplementedException();
+            var parametres = new DynamicParameters();
+            parametres.Add("@hospi_Nombre", item.hospi_Nombre, DbType.String, ParameterDirection.Input);
+            parametres.Add("@hospi_Telefono", item.hospi_Telefono, DbType.String, ParameterDirection.Input);
+            using var db = new SqlConnection(CentrosMedicosContext.ConnectionString);
+            return db.ExecuteScalar<int>(ScriptsBaseDatos.UDP_insertar_hospitales, parametres, commandType: CommandType.StoredProcedure);
         }
 
         public IEnumerable<tbHospiltales> List()

@@ -251,7 +251,7 @@ namespace Proyecto.BusinessLogic.Services
 
         #endregion
 
-        #region Roles
+        #region Hospitales
         //listado 
         public IEnumerable<tbHospiltales> ListadoHospital(out string errorMessage)
         {

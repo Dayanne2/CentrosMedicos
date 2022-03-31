@@ -14,6 +14,7 @@ namespace ProyectoCentroMedico.MVC.Extensions
         {
             CreateMap<tbUsuarios, UsuariosViewModel>().ReverseMap();
             CreateMap<tbSala, SalaViewModel>().ReverseMap();
+            CreateMap<tbHospiltales, HospitalesViewModel>().ReverseMap();
         }
     }
 }

@@ -37,6 +37,7 @@ namespace Proyecto.DataAccess.Repositories
         #region tbHospiltales
         //listado
         public static string UDP_Select_tbHospiltales = "UDP_Select_tbHospiltales";
+        public static string UDP_insertar_hospitales = "UDP_insertar_hospitales";
         #endregion
     }
 }
