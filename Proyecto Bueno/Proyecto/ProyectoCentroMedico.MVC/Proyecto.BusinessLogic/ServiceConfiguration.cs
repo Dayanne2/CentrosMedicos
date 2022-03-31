@@ -18,6 +18,7 @@ namespace Proyecto.BusinessLogic
             services.AddScoped<HospitalRepositories>();
             services.AddScoped<UsuariosRepository>();
             services.AddScoped<RolesRepositories>();
+            services.AddScoped<SalasRepository>();
             CentrosMedicosContext.BuildConnectionString(connectionString);
         }
 

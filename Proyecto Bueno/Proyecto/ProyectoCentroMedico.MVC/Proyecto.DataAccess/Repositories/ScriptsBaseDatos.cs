@@ -22,5 +22,19 @@ namespace Proyecto.DataAccess.Repositories
         //listado
         public static string UDP_Select_tbRoles = "UDP_Select_tbRoles";
         #endregion
+
+
+        #region tbSala
+        //listado
+        public static string UDP_Select_tbSala = "UDP_Select_tbSala";
+        //insertar
+        public static string UDP_insertar_Sala = "UDP_insertar_Sala";
+
+        #endregion
+
+        #region tbHospiltales
+        //listado
+        public static string UDP_Select_tbHospiltales = "UDP_Select_tbHospiltales";
+        #endregion
     }
 }

@@ -1,6 +1,9 @@
-﻿using Proyecto.Entities.Entities;
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
+using Proyecto.Entities.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -42,7 +45,9 @@ namespace Proyecto.DataAccess.Repositories
 
         public IEnumerable<tbHospiltales> List()
         {
-            throw new NotImplementedException();
+            using var db = new SqlConnection(CentrosMedicosContext.ConnectionString);
+            var result = db.Query<tbHospiltales>(ScriptsBaseDatos.UDP_Select_tbHospiltales, null, commandType: CommandType.StoredProcedure);
+            return result;
         }
     }
 }

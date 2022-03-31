@@ -13,12 +13,18 @@ namespace Proyecto.BusinessLogic.Services
     {
         private readonly PlantillaRepository _plantillaRepository;
         private readonly RolesRepositories _rolesRepository;
+        private readonly SalasRepository _salasRepository;
+        private readonly HospitalRepositories _hospitalRepositories;
 
         public CatalogService(PlantillaRepository plantillaRepository,
-             RolesRepositories rolesRepository)
+             RolesRepositories rolesRepository,
+              SalasRepository salasRepository,
+             HospitalRepositories hospitalRepositories)
         {
             _plantillaRepository = plantillaRepository;
             _rolesRepository = rolesRepository;
+            _salasRepository = salasRepository;
+            _hospitalRepositories = hospitalRepositories;
 
         }
 
@@ -150,5 +156,149 @@ namespace Proyecto.BusinessLogic.Services
             }
         }
         #endregion
+
+        #region Sala
+
+        public IEnumerable<tbSala> ListadoSala(out string errorMessage)
+        {
+            errorMessage = string.Empty;
+            try
+            {
+                return _salasRepository.List();
+            }
+            catch (Exception ex)
+            {
+                errorMessage = ex.Message;
+                return Enumerable.Empty<tbSala>();
+            }
+        }
+
+        public string InsertarSala(tbSala item)
+        {
+            try
+            {
+                int resultado = _salasRepository.Insert(item);
+                string mensaje = string.Empty;
+                if (resultado > 0)
+                    mensaje = "Se produjo un error al agregar el registro";
+
+                return mensaje;
+            }
+            catch (Exception ex)
+            {
+
+                return ex.Message;
+            }
+        }
+
+        public tbSala FindSala(int id, out string errorMessage)
+        {
+            var response = new tbSala();
+            errorMessage = string.Empty;
+            try
+            {
+                response = _salasRepository.Find(id);
+
+            }
+            catch (Exception ex)
+            {
+
+                errorMessage = ex.Message;
+            }
+            return response;
+        }
+
+        public tbSala FindSala(out string errorMessage, Expression<Func<tbSala, bool>> expression = null)
+        {
+            var response = new tbSala();
+            errorMessage = string.Empty;
+            try
+            {
+                response = _salasRepository.Find(expression);
+
+            }
+            catch (Exception ex)
+            {
+
+                errorMessage = ex.Message;
+            }
+            return response;
+        }
+
+        #endregion
+
+        #region Roles
+        //listado 
+        public IEnumerable<tbHospiltales> ListadoHospital(out string errorMessage)
+        {
+            errorMessage = string.Empty;
+            try
+            {
+                return _hospitalRepositories.List();
+            }
+            catch (Exception ex)
+            {
+                errorMessage = ex.Message;
+                return Enumerable.Empty<tbHospiltales>();
+            }
+        }
+        //insertar 
+        public string InsertarHospita(tbHospiltales item)
+        {
+
+            try
+            {
+                int resultado = _hospitalRepositories.Insert(item);
+                string mensaje = string.Empty;
+                if (resultado <= 0)
+                    mensaje = "Se produjo un error al agregar el registro";
+
+                return mensaje;
+            }
+            catch (Exception ex)
+            {
+
+                return ex.Message;
+            }
+        }
+        //busquedad por id
+        public tbHospiltales FindHospital(int id, out string errorMessage)
+        {
+            var response = new tbHospiltales();
+            errorMessage = string.Empty;
+            try
+            {
+                response = _hospitalRepositories.Find(id);
+
+            }
+            catch (Exception ex)
+            {
+
+                errorMessage = ex.Message;
+            }
+            return response;
+
+        }
+        //busqueda generalizada
+        public tbHospiltales FindHospital(out string errorMessage, Expression<Func<tbHospiltales, bool>> expression = null)
+        {
+            var response = new tbHospiltales();
+            errorMessage = string.Empty;
+            try
+            {
+                response = _hospitalRepositories.Find(expression);
+
+            }
+            catch (Exception ex)
+            {
+
+                errorMessage = ex.Message;
+            }
+            return response;
+        }
+
+
+        #endregion
+
     }
 }

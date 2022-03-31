@@ -10,7 +10,7 @@ namespace ProyectoCentroMedico.MVC.Models
 {
     public class SalaViewModel
     {
-        [Display(Name = "Hospital Id")]
+        [Display(Name = "Hospital")]
         [Required(ErrorMessage = "El campo {0} es requerido")]
         public int? hospi_Id { get; set; }
 

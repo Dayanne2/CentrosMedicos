@@ -13,6 +13,7 @@ namespace ProyectoCentroMedico.MVC.Extensions
         public MappingProfileExntensions()
         {
             CreateMap<tbUsuarios, UsuariosViewModel>().ReverseMap();
+            CreateMap<tbSala, SalaViewModel>().ReverseMap();
         }
     }
 }
