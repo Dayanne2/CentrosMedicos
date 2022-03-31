@@ -67,7 +67,7 @@ namespace ProyectoCentroMedico.MVC
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Plantilla}/{action=PrintBy}/{id?}");
+                    pattern: "{controller=Usuarios}/{action=Login}/{id?}");
             });
         }
     }
