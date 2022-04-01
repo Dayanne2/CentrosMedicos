@@ -57,7 +57,7 @@ namespace Proyecto.DataAccess.Repositories
         {
             int id = 0;
             String id_ultima = "SELECT distinct TOP 1 (planti_EmpleadoId) FROM tbPlantilla ORDER BY planti_EmpleadoId DESC";
-            SqlConnection Con = new SqlConnection("data source=MARU\\SQLEXPRESS; initial catalog=CentrosMedicosDB; user id=FernandoRios; password=123");
+            SqlConnection Con = new SqlConnection("Server= Mauricio; Database= CentrosMedicosDB; User Id= MauJosue; Password= 1234;");
             SqlCommand ejecutar = new SqlCommand(id_ultima, Con);
             Con.Open();
             SqlDataReader leer = ejecutar.ExecuteReader();
@@ -89,7 +89,9 @@ namespace Proyecto.DataAccess.Repositories
 
         public IEnumerable<tbPlantilla> List()
         {
-            throw new NotImplementedException();
+            using var db = new SqlConnection(CentrosMedicosContext.ConnectionString);
+            var result = db.Query<tbPlantilla>(ScriptsBaseDatos.UDP_Select_tbPlantilla, null, commandType: CommandType.StoredProcedure);
+            return result;
         }
     }
 }
