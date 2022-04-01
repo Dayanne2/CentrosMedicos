@@ -19,6 +19,7 @@
                 <form class="form-horizontal" asp-action="Login" asp-controller="Usuarios" autocomplete="off" method="post">
                     <h1 class="Login">Iniciar Sesión_</h1>
                     <br>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <input type="text" asp-for="usu_Email" class="form-control" maxlength="150" placeholder="Usuario" />
                     <input type="password" asp-for="usu_Password" class="form-control" maxlength="150" placeholder="Contraseña" />
                     <br> <br>
