@@ -57,7 +57,7 @@ namespace Proyecto.DataAccess.Repositories
         {
             int id = 0;
             String id_ultima = "SELECT distinct TOP 1 (sala_Id) FROM tbSala ORDER BY sala_Id DESC";
-            SqlConnection Con = new SqlConnection("data source=WINDOWS-N9P87K2\\SQLEXPRESS; initial catalog=CentrosMedicosDB; user id=romero05; password=hola123");
+            SqlConnection Con = new SqlConnection("data source=MARU\\SQLEXPRESS; initial catalog=CentrosMedicosDB; user id=FernandoRios; password=123");
             SqlCommand ejecutar = new SqlCommand(id_ultima, Con);
             Con.Open();
             SqlDataReader leer = ejecutar.ExecuteReader();

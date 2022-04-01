@@ -96,6 +96,11 @@ button{
 	box-sizing: border-box;
 }
 
+.TextoAlerta {
+	color: red;
+}
+
+
 body {
 	background: #f6f5f7;
 	display: flex;
