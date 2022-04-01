@@ -28,11 +28,21 @@ namespace ProyectoCentroMedico.MVC.Models
         [Display(Name = "Salario")]
         public int planti_Salario { get; set; }
 
+        [Display(Name = "Hospital Id")]
+        public int hospi_Id { get; set; }
+
         public SelectList ListadoSala { get; set; }
+
+        public SelectList ListadoHos { get; set; }
+
 
         public void LlenarSala(IEnumerable<tbSala> listado)
         {
             ListadoSala = new SelectList(listado, "sala_Id", "sala_Nombre");
+        }
+        public void LlenarHospital(IEnumerable<tbHospiltales> listado)
+        {
+            ListadoHos = new SelectList(listado, "hospi_Id", "hospi_Nombre");
         }
     }
 }

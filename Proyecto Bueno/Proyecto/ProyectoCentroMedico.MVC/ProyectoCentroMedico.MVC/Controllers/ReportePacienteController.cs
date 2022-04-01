@@ -47,12 +47,21 @@ namespace ProyectoCentroMedico.MVC.Controllers
             return File(result.MainStream, "application/pdf");
         }
 
+        [HttpGet("EmpleadoSala/ListaHospitalSala/{hospi_Id}")]
+        public IActionResult MuniDepaCreate(int hospi_Id)
+        {
+            var editorial = new EmpleadoSalaViewModel();
+            editorial.LlenarSala(_catalogService.ListadoSala(out string mensajeError).Where(x => x.hospi_Id == hospi_Id));
+            return Ok(editorial);
+        }
+
         [HttpGet("/EmpleadoSala/Crear")]
         //[SessionManager(Helpers.UsuarioC)]
         public IActionResult EmpleadoSalaId()
         {
             var rol = new EmpleadoSalaViewModel();
             rol.LlenarSala(_catalogService.ListadoSala(out string errorMessage));
+            rol.LlenarHospital(_catalogService.ListadoHospital(out string errorMessager));
             return View(rol);
         }
 

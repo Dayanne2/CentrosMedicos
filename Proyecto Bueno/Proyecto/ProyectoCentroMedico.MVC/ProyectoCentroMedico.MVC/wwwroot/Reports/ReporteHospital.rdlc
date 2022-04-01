@@ -142,7 +142,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Nombre de la Sala</Value>
+                              <Value>Telefono</Value>
                               <Style>
                                 <Color>White</Color>
                               </Style>
@@ -286,7 +286,7 @@
         <Top>1.83417cm</Top>
         <Left>0.26017cm</Left>
         <Height>1.2cm</Height>
-        <Width>15.8939cm</Width>
+        <Width>15.89391cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
