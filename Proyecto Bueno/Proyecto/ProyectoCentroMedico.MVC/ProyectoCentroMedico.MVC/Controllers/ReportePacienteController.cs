@@ -46,5 +46,25 @@ namespace ProyectoCentroMedico.MVC.Controllers
             var result = localReport.Execute(RenderType.Pdf);
             return File(result.MainStream, "application/pdf");
         }
+
+        [HttpGet("/EmpleadoSala/Crear")]
+        //[SessionManager(Helpers.UsuarioC)]
+        public IActionResult EmpleadoSalaId()
+        {
+            return View();
+        }
+
+        [HttpPost("/EmpleadoSala/Crear")]
+        //[SessionManager(Helpers.UsuarioC)]
+        public IActionResult EmpleadoSalaId(EmpleadoSalaViewModel item)
+        {
+            int id = item.sala_Id;
+            var path = $"{this._webHostEnvironment.WebRootPath}\\Reports\\ReporteEmpleadosPorSala.rdlc";
+            var tabla = _catalogService.EmpleadoSalaId(id);
+            LocalReport localReport = new LocalReport(path);
+            localReport.AddDataSource("DataSet1", tabla);
+            var result = localReport.Execute(RenderType.Pdf);
+            return File(result.MainStream, "application/pdf");
+        }
     }
 }

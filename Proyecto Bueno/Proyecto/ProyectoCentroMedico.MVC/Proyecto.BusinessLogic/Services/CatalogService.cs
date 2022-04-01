@@ -17,13 +17,15 @@ namespace Proyecto.BusinessLogic.Services
         private readonly HospitalRepositories _hospitalRepositories;
         private readonly EnfermoRepository _enfermoRepository;
         private readonly ReporteGeneralRepository _reporteGeneralRepository;
+        private readonly EmpleadoSalaRepository _empleadoSalaRepository;
 
         public CatalogService(PlantillaRepository plantillaRepository,
              RolesRepositories rolesRepository,
               SalasRepository salasRepository,
              HospitalRepositories hospitalRepositories,
              EnfermoRepository enfermoRepository,
-             ReporteGeneralRepository reporteGeneralRepository)
+             ReporteGeneralRepository reporteGeneralRepository,
+             EmpleadoSalaRepository empleadoSalaRepository)
         {
             _plantillaRepository = plantillaRepository;
             _rolesRepository = rolesRepository;
@@ -31,6 +33,7 @@ namespace Proyecto.BusinessLogic.Services
             _hospitalRepositories = hospitalRepositories;
             _enfermoRepository = enfermoRepository;
             _reporteGeneralRepository = reporteGeneralRepository;
+            _empleadoSalaRepository = empleadoSalaRepository;
         }
 
         #region Roles
@@ -536,6 +539,20 @@ namespace Proyecto.BusinessLogic.Services
             catch (Exception)
             {
                 return Enumerable.Empty<ReporteGeneral>();
+            }
+        }
+        #endregion
+
+        #region EmpleadoSala
+        public IEnumerable<EmpleadoSala> EmpleadoSalaId(int id)
+        {
+            try
+            {
+                return _empleadoSalaRepository.GetReportInt(id);
+            }
+            catch (Exception)
+            {
+                return Enumerable.Empty<EmpleadoSala>();
             }
         }
         #endregion

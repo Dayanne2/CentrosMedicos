@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\Reports\ReporteEmpleadosPorSala.rdlc" />
     <Content Remove="wwwroot\Reports\ReporteEnfermo.rdlc" />
     <Content Remove="wwwroot\Reports\ReporteHospital.rdlc" />
     <Content Remove="wwwroot\Reports\ReportePlantilla.rdlc" />
@@ -13,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="wwwroot\Reports\ReporteEmpleadosPorSala.rdlc" />
     <EmbeddedResource Include="wwwroot\Reports\ReporteEnfermo.rdlc" />
     <EmbeddedResource Include="wwwroot\Reports\ReporteHospital.rdlc" />
     <EmbeddedResource Include="wwwroot\Reports\ReportePlantilla.rdlc" />
