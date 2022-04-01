@@ -50,7 +50,7 @@ namespace ProyectoCentroMedico.MVC.Controllers
 
         //crear
         [HttpGet("/Hospitales/Crear")]
-        [SessionManager(Helpers.InsertarHospital)]
+        [SessionManager(Helpers.InsertHospital)]
         public IActionResult Create()
         {
             //var rol = new UsuariosViewModel();

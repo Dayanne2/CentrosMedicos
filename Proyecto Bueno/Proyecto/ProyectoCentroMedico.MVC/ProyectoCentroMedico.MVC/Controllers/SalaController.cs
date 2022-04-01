@@ -48,7 +48,7 @@ namespace ProyectoCentroMedico.MVC.Controllers
         }
 
         [HttpGet("/Sala/Crear")]
-        [SessionManager(Helpers.InsertarSalas)]
+        [SessionManager(Helpers.InsertSalas)]
         public IActionResult Create()
         {
             var rol = new SalaViewModel();

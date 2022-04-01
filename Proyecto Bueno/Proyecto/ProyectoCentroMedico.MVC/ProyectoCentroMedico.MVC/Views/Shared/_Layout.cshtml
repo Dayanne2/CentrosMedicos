@@ -62,7 +62,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                    with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
 
 
 
@@ -70,7 +70,7 @@
                         <li class="nav-item menu-open">
 
                         <li class="nav-item">
-                            <if include-if="permisosUsuario.Contains(Helpers.Prueba)">
+                            <if include-if="permisosUsuario.Contains(Helpers.ReporteGeneral)">
                                 <a href="/ReportePaciente/Crear" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Reporte General</p>
@@ -78,60 +78,67 @@
                             </if>
                         </li>
                         <li class="nav-item">
-                            <a href="/EmpleadoSala/Crear" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Empleado por Sala</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/EmpleadoHospital/Crear" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Empleado por Hospital</p>
-                            </a>
-                        </li>
+                            <if include-if="permisosUsuario.Contains(Helpers.ReporteEmpleadoSala)">
 
-                        <li class="nav-header">Formularios</li>
-                        <li class="nav-item">
-                            <if include-if="permisosUsuario.Contains(Helpers.InsertarPersonal)">
-                                <a href="~/Plantilla/Crear" class="nav-link">
+                                <a href="/EmpleadoSala/Crear" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Personal</p>
+                                    <p>Empleado por Sala</p>
                                 </a>
                             </if>
                         </li>
+                        <li class="nav-item">
+                            <if include-if="permisosUsuario.Contains(Helpers.ReporteEmpleadoHospital)">
 
-                        <li class="nav-item">
-                            <if include-if="permisosUsuario.Contains(Helpers.InsertarHospital)">
-                                <a href="~/Hospitales/Crear" class="nav-link">
+                                <a href="/EmpleadoHospital/Crear" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Hospitales</p>
+                                    <p>Empleado por Hospital</p>
                                 </a>
                             </if>
                         </li>
-                        <li class="nav-item">
-                            <if include-if="permisosUsuario.Contains(Helpers.InsertarSalas)">
-                                <a href="~/Sala/Crear" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Salas</p>
-                                </a>
-                            </if>
-                        </li>
-                        <li class="nav-item">
-                            <if include-if="permisosUsuario.Contains(Helpers.InsertarEnfermo)">
-                                <a href="~/Enfermos/Crear" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Enfermo</p>
-                                </a>
-                            </if>
-                        </li>
-                        <li class="nav-item">
-                            <if include-if="permisosUsuario.Contains(Helpers.InsertarUsuarios)">
-                                <a href="~/Usuarios/Listado" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Usuarios</p>
-                                </a>
-                            </if>
-                        </li>
+                        <if include-if="permisosUsuario.Contains(Helpers.InsertPersonal)">
+
+                            <li class="nav-header">Formularios</li>
+                            <li class="nav-item">
+
+                                    <a href="~/Plantilla/Crear" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Personal</p>
+                                    </a>
+                                </if>
+                            </li>
+
+                            <li class="nav-item">
+                                <if include-if="permisosUsuario.Contains(Helpers.InsertHospital)">
+                                    <a href="~/Hospitales/Crear" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Hospitales</p>
+                                    </a>
+                                </if>
+                            </li>
+                            <li class="nav-item">
+                                <if include-if="permisosUsuario.Contains(Helpers.InsertSalas)">
+                                    <a href="~/Sala/Crear" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Salas</p>
+                                    </a>
+                                </if>
+                            </li>
+                            <li class="nav-item">
+                                <if include-if="permisosUsuario.Contains(Helpers.InsertEnfermo)">
+                                    <a href="~/Enfermos/Crear" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Enfermo</p>
+                                    </a>
+                                </if>
+                            </li>
+                            <li class="nav-item">
+                                <if include-if="permisosUsuario.Contains(Helpers.IndexUsuario)">
+                                    <a href="~/Usuarios/Listado" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Usuarios</p>
+                                    </a>
+                                </if>
+                            </li>
 
                     </ul>
                 </nav>

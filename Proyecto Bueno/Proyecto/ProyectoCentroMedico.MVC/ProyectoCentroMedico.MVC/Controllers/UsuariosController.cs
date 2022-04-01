@@ -37,7 +37,7 @@ namespace ProyectoCentroMedico.MVC.Controllers
 
         //listado
         [HttpGet("Usuarios/Listado")]
-        [SessionManager(Helpers.Prueba)]
+        [SessionManager(Helpers.IndexUsuario)]
         public IActionResult Index()
         {
             var listado = _usuariosService.Listado(out string erroMessage);
@@ -50,7 +50,7 @@ namespace ProyectoCentroMedico.MVC.Controllers
 
         //crear
         [HttpGet("/Usuarios/Crear")]
-        [SessionManager(Helpers.InsertarUsuarios)]
+        [SessionManager(Helpers.InsertUsuarios)]
         public IActionResult Create()
         {
             var rol = new UsuariosViewModel();

@@ -43,7 +43,7 @@ namespace ProyectoCentroMedico.MVC.Controllers
 
         //crear
         [HttpGet("/Plantilla/Crear")]
-        [SessionManager(Helpers.InsertarPersonal)]
+        [SessionManager(Helpers.InsertPersonal)]
         public IActionResult Create()
         {
             var rol = new PlantillaViewModel();

@@ -8,18 +8,20 @@ namespace Proyecto.BusinessLogic
 {
     public static class Helpers
     {
-        public const string Home = "Inicio";
+        public const string InsertPersonal = "InsertPersonal";
 
-        #region Personal
-        public const string InsertarPersonal = "InsertPersonal";
-        #endregion
+        public const string InsertHospital = "InsertHospital";
+        public const string InsertSalas = "InsertSalas";
+        public const string InsertEnfermo = "InsertEnfermo";
+        public const string InsertUsuarios = "InsertUsuarios";
 
-        public const string InsertarHospital = "InsertHospital";
-        public const string InsertarSalas = "InsertSalas";
-        public const string InsertarEnfermo = "InsertEnfermo";
-        public const string InsertarUsuarios = "InsertUsuarios";
+        public const string Home = "Home";
 
-        public const string Prueba = "prueba";
+        public const string IndexUsuario = "IndexUsuario";
+        public const string ReporteGeneral = "ReporteGeneral";
+        public const string ReporteEmpleadoHospital = "ReporteEmpleadoHospital";
+        public const string ReporteEmpleadoSala = "ReporteEmpleadoSala";
+
 
 
     }
