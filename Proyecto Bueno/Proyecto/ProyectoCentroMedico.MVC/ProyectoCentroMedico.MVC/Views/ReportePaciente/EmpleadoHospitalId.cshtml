@@ -1,6 +1,6 @@
-﻿@model EmpleadoSalaViewModel
+﻿@model EmpleadoHospitalViewModel
 @{
-    ViewData["Title"] = "EmpleadoSalaId";
+    ViewData["Title"] = "EmpleadoHospitalId";
 }
 
 <div class="page-content-wrapper">
@@ -9,16 +9,16 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h1>Reporte de Empleado por Sala</h1>
+                        <h1>Reporte de Empleados por Hospital</h1>
                         <form autocomplete="off" method="post" target="_blank">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
-                                <label asp-for="sala_Id" class="control-label col-md-2"></label>
+                                <label asp-for="hospi_Id" class="control-label col-md-2"></label>
                                 <div class="col-md-10">
-                                    <select asp-for="sala_Id" class="form-control" asp-items="Model.ListadoSala">
-                                        <option>Seleccione la Sala</option>
+                                    <select asp-for="hospi_Id" class="form-control" asp-items="Model.ListadoHospitales">
+                                        <option>Seleccione el Hospital</option>
                                     </select>
-                                    <span asp-validation-for="sala_Id" class="text-danger"></span>
+                                    <span asp-validation-for="hospi_Id" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="form-group">

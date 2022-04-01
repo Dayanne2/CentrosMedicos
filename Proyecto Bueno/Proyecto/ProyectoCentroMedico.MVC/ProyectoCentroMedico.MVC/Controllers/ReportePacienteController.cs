@@ -51,7 +51,9 @@ namespace ProyectoCentroMedico.MVC.Controllers
         //[SessionManager(Helpers.UsuarioC)]
         public IActionResult EmpleadoSalaId()
         {
-            return View();
+            var rol = new EmpleadoSalaViewModel();
+            rol.LlenarSala(_catalogService.ListadoSala(out string errorMessage));
+            return View(rol);
         }
 
         [HttpPost("/EmpleadoSala/Crear")]
@@ -61,6 +63,28 @@ namespace ProyectoCentroMedico.MVC.Controllers
             int id = item.sala_Id;
             var path = $"{this._webHostEnvironment.WebRootPath}\\Reports\\ReporteEmpleadosPorSala.rdlc";
             var tabla = _catalogService.EmpleadoSalaId(id);
+            LocalReport localReport = new LocalReport(path);
+            localReport.AddDataSource("DataSet1", tabla);
+            var result = localReport.Execute(RenderType.Pdf);
+            return File(result.MainStream, "application/pdf");
+        }
+
+        [HttpGet("/EmpleadoHospital/Crear")]
+        //[SessionManager(Helpers.UsuarioC)]
+        public IActionResult EmpleadoHospitalId()
+        {
+            var rol = new EmpleadoHospitalViewModel();
+            rol.LlenarHosp(_catalogService.ListadoHospital(out string errorMessage));
+            return View(rol);
+        }
+
+        [HttpPost("/EmpleadoHospital/Crear")]
+        //[SessionManager(Helpers.UsuarioC)]
+        public IActionResult EmpleadoHospitalId(EmpleadoHospitalViewModel item)
+        {
+            int id = item.hospi_Id;
+            var path = $"{this._webHostEnvironment.WebRootPath}\\Reports\\ReporteEmpleadosPorHospital.rdlc";
+            var tabla = _catalogService.EmpleadoHospitalId(id);
             LocalReport localReport = new LocalReport(path);
             localReport.AddDataSource("DataSet1", tabla);
             var result = localReport.Execute(RenderType.Pdf);

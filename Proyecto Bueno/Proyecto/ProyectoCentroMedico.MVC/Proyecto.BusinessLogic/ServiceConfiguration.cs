@@ -14,6 +14,7 @@ namespace Proyecto.BusinessLogic
     {
         public static void DataAccess(this IServiceCollection services, string connectionString)
         {
+            services.AddScoped<EmpleadoHospitalRepository>();
             services.AddScoped<EmpleadoSalaRepository>();
             services.AddScoped<ReporteGeneralRepository>();
             services.AddScoped<PlantillaRepository>();

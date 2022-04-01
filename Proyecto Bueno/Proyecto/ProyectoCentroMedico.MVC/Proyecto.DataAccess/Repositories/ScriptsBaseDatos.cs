@@ -56,5 +56,9 @@ namespace Proyecto.DataAccess.Repositories
         #region EmpleadoSala
         public static string UDP_Empleados_Cada_Sala = "UDP_Empleados_Cada_Sala";
         #endregion
+
+        #region EmpleadoHospital
+        public static string UDP_Empleados_Cada_Hospital = "UDP_Empleados_Cada_Hospital";
+        #endregion
     }
 }
